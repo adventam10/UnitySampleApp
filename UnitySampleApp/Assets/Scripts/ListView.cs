@@ -106,8 +106,9 @@ public class ListView : MonoBehaviour
         {
             var cell = Instantiate(_cellPrefab, _scrollRect.content);
 
-            cell.rectTransform.anchorMin = new Vector2(0.5f, 1f);
-            cell.rectTransform.anchorMax = new Vector2(0.5f, 1f);
+            cell.rectTransform.anchorMin = new Vector2(0f, 1f);
+            cell.rectTransform.anchorMax = new Vector2(1f, 1f);
+            cell.rectTransform.sizeDelta = new Vector2(0f, _cellHeight);
             cell.rectTransform.anchoredPosition = new Vector2(0f, -_cellHeight * i - _cellHeight / 2f);
 
             cell.UpdateData(i, dataSource.Data(i));
