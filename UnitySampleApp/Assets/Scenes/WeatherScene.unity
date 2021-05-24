@@ -499,7 +499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _title: {fileID: 1130229248}
   _telop: {fileID: 620929356}
-  _description: {fileID: 1250613041}
+  _messageHandler: {fileID: 2010362521}
 --- !u!4 &1051149436
 Transform:
   m_ObjectHideFlags: 0
@@ -1092,6 +1092,7 @@ GameObject:
   - component: {fileID: 2010362518}
   - component: {fileID: 2010362520}
   - component: {fileID: 2010362519}
+  - component: {fileID: 2010362521}
   m_Layer: 5
   m_Name: TextArea
   m_TagString: Untagged
@@ -1157,6 +1158,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2010362517}
   m_CullTransparentMesh: 1
+--- !u!114 &2010362521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010362517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8957c83d1e110450fbe7785e1634befd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _description: {fileID: 1250613041}
 --- !u!1 &2120476144
 GameObject:
   m_ObjectHideFlags: 0

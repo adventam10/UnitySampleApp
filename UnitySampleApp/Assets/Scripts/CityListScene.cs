@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class CityListScene : MonoBehaviour, ListViewDataSource
 {
-    private CityData[] _cityList;
+    [SerializeField]
     private ListView _listView;
+    private CityData[] _cityList;
+
     public Weather result;
 
     void Start()
@@ -18,8 +20,6 @@ public class CityListScene : MonoBehaviour, ListViewDataSource
         var tmpList = JsonUtility.FromJson<TmpList>(textAsset.text);
         _cityList = tmpList.list;
 
-        GameObject resultObj = GameObject.Find ("ListView");
-        _listView = resultObj.GetComponent<ListView> ();
         _listView.dataSource = this;
         _listView.selector = delegate (int index) {
             var city = _cityList[index];
