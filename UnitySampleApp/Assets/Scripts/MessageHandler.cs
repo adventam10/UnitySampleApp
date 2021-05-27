@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Text.RegularExpressions;
+using System;
 
 public class MessageHandler : MonoBehaviour
 {
     [SerializeField]
     private Text _description;
 
-    private List<string> _splitMessages = new List<string>();
+    private string[] _splitMessages;
     private int _splitMessagesIndex = 0;
     private int _nowMessageIndex = 0;
     private bool _isNowMessageEnd = false;
@@ -35,7 +37,7 @@ public class MessageHandler : MonoBehaviour
                 _isNowMessageEnd = false;
             }
 
-            if (_splitMessagesIndex >= _splitMessages.Count) 
+            if (_splitMessagesIndex >= _splitMessages.Length) 
             {
                 // 全部表示終了の場合最初から
                 _nowMessageIndex = 0;
@@ -74,28 +76,11 @@ public class MessageHandler : MonoBehaviour
         _nowMessageIndex = 0;
         _splitMessagesIndex = 0;
         _isNowMessageEnd = false;
-        _splitMessages.Clear();
-
-        string allMessage = originalMessage;
-        allMessage = allMessage.Replace(" ", "");
-        allMessage = allMessage.Replace("\n\n", "\n");
-        int count = 64;
-        int length = Mathf.CeilToInt(allMessage.Length / count);
-        for (int i = 0; i < length; i++) 
+        if (_splitMessages != null)
         {
-            int start = count * i;
-            if (start >= allMessage.Length) 
-            {
-                break;
-            }
-            if (start + count > allMessage.Length) 
-            {
-                _splitMessages.Add(allMessage.Substring(start));
-            } 
-            else 
-            {
-                _splitMessages.Add(allMessage.Substring(start, count));
-            }
+            Array.Clear(_splitMessages, 0, _splitMessages.Length);
         }
+
+        _splitMessages = Regex.Split(originalMessage, @"\s*\n\n\s*", RegexOptions.IgnorePatternWhitespace);
     } 
 }

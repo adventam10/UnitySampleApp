@@ -15,11 +15,20 @@ public class WeatherScene : MonoBehaviour
 
     void Start()
     {
-        GameObject resultObj = GameObject.Find ("SceneHandler");
-        Weather weather = resultObj.GetComponent<CityListScene> ().result;
-        _title.text = weather.title;
-        _telop.text = weather.forecasts[0].telop;
-        _messageHandler.SetupMessage(weather.description.text);
+        GameObject resultObj = GameObject.Find("SceneHandler");
+        CityListScene cityListScene = resultObj.GetComponent<CityListScene>();
+        if (cityListScene != null)
+        {
+            Weather weather = cityListScene.result;
+            _title.text = weather.title;
+            _telop.text = weather.forecasts[0].telop;
+            _messageHandler.SetupMessage(weather.description.text);
+        }
+        else
+        {
+            _messageHandler.SetupMessage("test1\n\ntest2");
+        }
+
         Destroy(resultObj);
     }
 
